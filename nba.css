@@ -1,0 +1,113 @@
+@font-face {
+    font-family: "GC Rotalum";
+    src:
+        url("./Rotalum.ttf")
+}
+
+body {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+}
+
+.vertical-wrapper {
+    align-self: center;
+    align-items: first baseline;
+    width: 800px;
+}
+
+header {
+    text-align: center;
+    max-width: 800px;
+}
+
+h1 {
+    position: absolute;
+    top: 140px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color: white;
+    text-shadow:2px 2px black;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: "GC Rotalum"
+}
+
+table, ol, ul, p {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+a {
+   font-family: 'Courier New', Courier, monospace; 
+}
+
+span#monofont {
+    font-family:'Courier New', Courier, monospace;
+}
+
+#monofont ~ span {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #ffdeb3;
+}
+
+#comp-graph {
+    display: flex;
+    width: 100%;;
+    height: 400px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #AAA;
+    border-radius: 0.5em;
+    align-self: center;
+}
+
+* b {
+    text-shadow: 2px 2px aqua;
+}
+
+path[stroke="red"]:hover {
+    stroke-opacity: .5;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    padding: 5px;
+}
+
+th {
+    padding: 5px;
+    text-align: left;
+}
+
+tbody tr th {
+    text-align: left;
+    font-weight: 500;
+}
+
+tr {
+    margin: 0px;
+    border-width: 2px;
+    border-top-style: solid;
+    border-bottom-style: solid;
+    border-left-style: none;
+    border-right-style: none;
+    border-color: black;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: beige;
+}
+
+tbody tr:nth-child(odd):hover {
+    background-color: aliceblue;
+}
+
+tbody tr:hover {
+    background-color: aliceblue;
+}

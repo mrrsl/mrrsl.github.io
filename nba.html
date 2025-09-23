@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Another sports stats site</title>
+  <link rel="stylesheet" href="./nba.css"/>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="./playergraph.js" defer></script>
+</head>
+
+<body>
+
+  <div class="vertical-wrapper">
+    <img src="https://fastly.picsum.photos/id/371/800/200.jpg?hmac=mAYmtf4lEo0r2ILUw6eURdS-V2TIiZaoWeeSRncPG_c" alt="Stock image of the city"/>
+    <header id="site-header">
+      <h1>NBA RAPTOR Ratings</h1>
+    </header>
+    <div id="content">
+      <!-- Show the main graph here -->
+      <div id="comp-graph">
+
+      </div>
+      <div class="list-display">
+        <p>
+          Above is a graph of <b><span id="player-name">a player</span></b>'s career RAPTOR ratings by season, with data by <a id="fivethreeieghtanchor" href="https://fivethirtyeight.com"><i>FiveThirtyEight</i></a>.
+        </p>
+        <br/> 
+        <h3>Top RAPTOR Seasons (No minimum games)</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Pos.</th>
+              <th>Player</th>
+              <th>Season</th>
+              <th>RAPTOR</th>
+            </tr>
+          </thead>
+          <tbody id="mvp-table-body">
+
+          </tbody>
+        </table>
+        <h3> Honorable Mentions </h3>
+        <ul>
+          <li id="raptor_offense"></li>
+          <li id="raptor_defense"></li>
+          <li id="war_playoffs"></li>
+        </ul>
+        <h3>Funniest Names</h3>
+        <ol>
+          <li>
+            Tacko Fall
+          </li>
+          <li>
+            Bismack Biyombo
+          </li>
+          <li>
+            Bol Bol
+          </li>
+        </ol>
+      </div>
+
+    </div>
+  </div>
+  <footer>
+    Note: Data beyond the 2022 season unavailable
+  </footer>
+</body>
