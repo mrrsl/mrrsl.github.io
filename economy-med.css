@@ -1,0 +1,140 @@
+@media (min-width: 601px) and (max-width: 1280px) {
+
+    div.center-container {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        grid-template-rows: auto auto auto auto auto;
+        max-width: 1280px;
+        width: 100%;
+    }
+
+    div.top-bar {
+        grid-column: 1 / span 2;
+        grid-row: 1 / span 1;
+        width: 100%;
+    }
+
+    header {
+        height: 100%;
+    }
+    
+    .nav-button {
+        width: 100px;
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+
+    footer {
+        grid-column: 1 / span2;
+        grid-row: 5 / span 1;
+    }
+
+    #icon-group {
+        padding: 5px;
+        width: 60px;
+        height: 100%;
+    }
+    #icon-group > img {
+        width: 40px;
+    }
+
+    div.showcase {
+        grid-column: 1 / span 2;
+        grid-row: 2 / span 1;
+        height: 400px;
+    }
+
+    span#showcase-text {
+        width: 500px;
+        padding: 10px;
+    }
+
+    div.device-bar {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: auto auto;
+        grid-row: 3 / span 1;
+        grid-column: 1 / span 2;
+        height: fit-content;
+    }
+
+    #divider {
+        display: none;
+    }
+
+    div#device-icons {
+        grid-row: 1 / span 1;
+        grid-column: 1 / span 1;
+
+    }
+
+    #device-text {
+        grid-column: 1 / span 1;
+        grid-row: 2 / span 1;
+        padding: 10px;
+    }
+
+    #device-text > p {
+        text-align: center;
+    }
+
+    div#content-group {
+        display: grid;
+        grid-column: 1 / span 2;
+        grid-row: 4 / span 1;
+        grid-template-rows: auto auto;
+        grid-template-columns: 100%;
+    }
+
+    section {
+        grid-row: 1 / span 1;
+        grid-column: 1 / span 1;
+    }
+
+    article {
+        margin: 5px;
+        padding: 10px;
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: auto 550px auto;
+    }
+
+    article>h4 {
+        grid-row: 1 / span 1;
+        grid-column: 2 /span 1;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    article>figure {
+        grid-row: 2 / span 1;
+        grid-column: 2 / span 2;
+        height: 250px;
+    }
+
+    .changebox {
+        display: grid;
+        grid-row: 2 / span 1;
+        grid-column: 1 / span 1;
+        grid-template-columns: auto auto auto;
+        grid-template-rows: auto auto auto;
+    }
+    div.changebox>p {
+        grid-row: 2 / span 1;
+        grid-column: 3 / span 1;
+        text-align: center;
+        height: fit-content;
+        font-size: 40px;
+    }
+
+    aside {
+        grid-row: 2 / span 1;
+        grid-column: 1 / span 1;
+        box-shadow: 0px 3px 10px;
+    }
+
+    footer {
+        grid-row: 5 / span 1;
+        grid-column: 1 / span 2;
+    }
+}
