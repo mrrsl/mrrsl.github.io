@@ -29,10 +29,7 @@
         height: auto;
     }
     div#device-icons {
-        height: fit-content;
-    }
-    div#device-icons > img {
-        height: 22vh; 
+        display: none;
     }
     div#device-text > p {
         text-align: center;
