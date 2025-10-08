@@ -47,8 +47,6 @@ div.top-bar {
     width: 100%;
     text-align: center;
 }
-
-
 .nav-button:hover {
     background-color: palegreen;
 }
@@ -72,6 +70,23 @@ div#org-logo-group {
     padding: 5px;
     align-items: center;
     margin: 0px;
+    flex-direction: row;
+}
+div#org-logo-group > button {
+    height: 100%;
+    aspect-ratio: 1/1;
+    font-size: 60px;
+    font-family: "Milker", Impact;
+    margin-left: 10px;
+    border-radius: 5px;
+    background-color: seagreen;
+    color: gold;
+    border-style: none;
+    padding-top: 4px;
+}
+div#org-logo-group > button:active {
+    background-color: aqua;
+    color: mediumslateblue;
 }
 
 div.showcase {
@@ -111,12 +126,6 @@ div#device-icons {
 .device-bar {
     background-color: lightcyan;
 }
-
-section {
-    background-color: rgb(5, 5, 60, 0.6);
-    color: white;
-}
-
 #device-text > p {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 18px;
@@ -127,6 +136,73 @@ section {
     width: 20px;
 }
 
+div#content-header > h3 {
+    text-align: right;
+    color: lightgoldenrodyellow;
+}
+div#content-header > h1 {
+    text-align: left;
+}
+div#content-group {
+    background-color: rgb(5, 5, 60, 0.6);
+    color: white;
+}
+div#content-header {
+    padding-left: 4vw;
+    padding-right: 4vw;
+}
+div#content-header > h3 {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+.article-divider {
+    height: 0px;
+    width: 86%;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #aaaabb;
+    border-radius: 2px;
+    transform: translate( 7%, 0%)
+}
+article {
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 1;
+    display: grid;
+    grid-template-rows: auto 20vh auto;
+    grid-template-columns: 60% auto auto;
+    margin-left: 4vw;
+    margin-right: 4vw;
+}
+h4.currency-title {
+    grid-row: 1 / span 1;
+    grid-column: 1 / span 1;
+    text-align: left;
+    padding-left: 3vw;
+}
+div.changebox {
+    grid-row: 1 / span 1;
+    grid-column: 2 / span 2;
+    display: grid;
+    align-items: center;
+}
+div.changebox > p {
+    text-align: center;
+}
+figure {
+    grid-row: 2 / span 1;
+    grid-column: 1 / span 2;
+    width: 100%;
+}
+article > div.content {
+    grid-row: 3 / span 1;
+    grid-column: 1 / span 3;
+    padding: 2vh;
+}
+article > img {
+    grid-row: 2 / span 1;
+    grid-column: 3 / span 1;
+    object-fit: contain;
+    width: 12vw;
+}
 h1, h4 {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-align: center;
@@ -145,14 +221,6 @@ svg {
 
 div.changebox>p {
     font-family: "Milker"
-}
-
-article {
-    border-top-style: dashed;
-    border-color: aliceblue;
-    border-width: 1px;
-    border-radius: 10px;
-    padding-bottom: 10px;
 }
 
 figcaption {
@@ -174,6 +242,12 @@ aside {
     background-color: rgb(100, 110, 120);
     color: #e9e9e9;
 }
+aside h5 {
+    margin-bottom: 0px;
+}
+aside > small {
+    display: block;
+}
 
 footer {
     display: flex;;
@@ -190,4 +264,13 @@ footer > * {
     font-family: sans-serif;
     color: navy;
     margin: 7px;
+}
+
+aside > button {
+    background-color: orange;
+    color: brown;
+    font-size: 24px;
+    padding: 10px;
+    border-style: none;
+    margin-top: 20px;
 }

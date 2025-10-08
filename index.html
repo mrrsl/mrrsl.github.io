@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="./economy-narrow.css"/>
 
   <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
-  <script defer src="./economy.js"></script>
+  <script defer src="./economyv2.js"></script>
 </head>
 <body>
   <div class="center-container wrapper">
@@ -37,6 +37,7 @@
         </div>
         <div id="org-logo-group">
           <span>Market</span>
+          <button>$</button>
         </div>
       </header>
     </div>
@@ -47,9 +48,11 @@
     </div>
     <div class="device-bar wrapper">
       <div id="device-icons" class="wrapper">
+        <img id="fridge-icon" src="./assets/fridge.png" alt="Fridge icon"/>
         <img id="tv-icon" src="./assets/tv.png" alt="TV icon"/>
         <img id="pc-icon" src="./assets/pc.png" alt="PC icon"/>
         <img id="laptop-icon" src="./assets/laptop.png" alt="https://www.flaticon.com/free-icons/laptop"/>
+        <img id="tablet-icon"  src="./assets/tablet.png" alt="Tablet icon"/>
         <img id="phone-icon" src="./assets/phone.png" alt="Phone Icon"/>
       </div>
       <div id="divider">
@@ -62,28 +65,16 @@
       </div>
     </div>
     <div id="content-group" class="wrapper">
+      <div id="content-header">
+        <h1>Today's Big Movers</h1>
+        <h3>Go and make some money</h3>
+      </div>
       <section>
-          <h1>Today's Big Movers</h1>
+        <div class="article-divider"></div>
         <div class="article-item wrapper">
           <article>
             <h4 class="currency-title">
-              <!-- Currency Title -->
-            </h4>
-            <div class="changebox">
-              <p>
-
-              </p> 
-            </div>
-            <figure>
-              <!-- currency price + price history -->
-               <figcaption></figcaption>
-            </figure>
-          </article>
-        </div>
-        <div class="article-item wrapper">
-          <article>
-            <h4 class="currency-title">
-              <!-- Currency Title -->
+              Currency Title
             </h4>
             <div class="changebox">
               <p>
@@ -93,12 +84,39 @@
             <figure>
               <!-- currency price + price history -->
             </figure>
+            <img src="./" alt="currency icon"/>
+            <div class="content">
+              <!--Content-->
+              Strike it rich with todays's highest appreciating asset but move fast because the market will move even faster.
+            </div>
           </article>
         </div>
+        <div class="article-divider"></div>
         <div class="article-item wrapper">
           <article>
             <h4 class="currency-title">
-              <!-- Currency Title -->
+              Currency Title
+            </h4>
+            <div class="changebox">
+              <p>
+
+              </p> 
+            </div>
+            <figure>
+              <!-- currency price + price history -->
+            </figure>
+            <img src="./" alt="currency icon"/>
+            <div class="content">
+              <!--Content-->
+              Too fast? Don't worry because there are still opportunities with the second winner of today's biggest gainer.
+            </div>
+          </article>
+        </div>
+        <div class="article-divider"></div>
+        <div class="article-item wrapper">
+          <article>
+            <h4 class="currency-title">
+              Currency Title
             </h4>
             <div class="changebox">
               <p>
@@ -107,13 +125,31 @@
             </div>
             <figure>
               <!-- currency price + price history -->
-               <figcaption></figcaption>
             </figure>
+            <img src="./" alt="currency icon"/>
+            <div class="content">
+              <!--Content-->
+              The least riskiest winner. Only for the faint of heart. But never give up your wealth dreams.
+            </div>
           </article>
         </div>
       </section>
       <aside>
-        <h3>Disclaimer:</h3> Market data is only a snapshot, this website does not constitute financial advice. A listed price does not mean there is a willing buyer or seller.
+        <div>
+          <h3>Disclaimer:</h3> 
+          <div class="article-divider"></div>
+          <br/>
+          Market data is only a snapshot, this website does not constitute financial advice. A listed price does not mean there is a willing buyer or seller.
+        </div>
+        <h5>
+          If graphs spill over, hit the resize
+        </h5>
+        <small>
+          No refunds
+        </small>
+        <button>
+          Resize Graphs
+        </button>
       </aside>
     </div>
     <footer>
@@ -122,6 +158,8 @@
       <a href="https://www.flaticon.com/free-icons/tu-tv" title="tu tv icons">Tu tv icons created by Dmytro Vyshnevskyi - Flaticon</a>
       <a href="https://www.flaticon.com/free-icons/computer" title="computer icons">Computer icons created by Freepik - Flaticon</a>
       <a href="https://www.flaticon.com/free-icons/laptop" title="laptop icons">Laptop icons created by Freepik - Flaticon</a>
+      <a href="https://www.flaticon.com/free-icons/tablets" title="tablets icons">Tablets icons created by kmg design - Flaticon</a>
+      <a href="https://www.flaticon.com/free-icons/fridge" title="fridge icons">Fridge icons created by Good Ware - Flaticon</a>
     </footer>
   </div>
 </body>

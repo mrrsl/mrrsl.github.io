@@ -28,6 +28,88 @@ var POEN_API = {
             acc += arr[a].value;
         }
         return acc / days;
+    },
+    GeneratedGraphs: []
+}
+
+
+/**
+ * Class that manages graph resizes for the d3 linecharts.
+ */
+class Histograph {
+    /**
+     * Creates and stores properties for the price history graph retrieved by the currency history endpoint.
+     * This will NOT append the graph to the parent.
+     * @param {Array} data Contains the price history data.
+     * @param {Element} container Parent element of the SVG.
+     */
+    constructor(data, container) {
+        /** Fetched history. */
+        this.historicalData = data;
+        /** DOM parent element. */
+        this.parent = container;
+        /** Width of SVG frame. */
+        this.width = container.offsetWidth;
+        /** Height of SVG frame. */
+        this.height = container.offsetHeight;
+        /** Sensible default for y-axis numbers. */
+        const wMargin = 40;
+        /** Sensible default for x-axis numbers. */
+        const hMargin = 30;
+        /** History upperbound. */
+        const dayThreshold = 14;
+        /** SVG frame for our graph. */
+        this.svgFrame = d3.create("svg")
+            .attr("width", this.width)
+            .attr("height", this.height);
+        
+        let valueMax = 0;
+        let startIndex = data.receiveCurrencyGraphData.length - dayThreshold - 1;
+        for (let a = startIndex; a < data.receiveCurrencyGraphData.length; a++) {
+            let day = data.receiveCurrencyGraphData[a];
+            if (day.value > valueMax) valueMax = day.value;
+        }
+
+        /** D3 scale representing how old the price datapoint is. */
+        this.timeScale = d3.scaleLinear([dayThreshold, 0],[wMargin, this.width - wMargin]);
+        /** Chaos value. */
+        this.priceScale = d3.scaleLinear([0, valueMax * 1.05], [this.height - hMargin, hMargin]);
+        this.priceFormatter = d3.format("3.2f");
+
+        this.xAxis = this.svgFrame.append("g")
+            .attr("class", "graph-x-axis")
+            .attr("transform", `translate(0, ${this.height - hMargin})`)
+            .call(d3.axisBottom(this.timeScale).ticks(dayThreshold));
+        
+        this.yAxis = this.svgFrame.append("g")
+            .attr("class", "graph-y-axis")
+            .attr("transform", `translate(${wMargin}, 0)`)
+            .call(d3.axisLeft(this.priceScale).ticks(3));
+        
+        this.yAxis.selectAll("text")
+            .data(this.priceScale.ticks())
+            .text(this.priceFormatter);
+        
+        let historyLineGen = d3.line()
+            .x(data => this.timeScale(data.daysAgo))
+            .y(data => this.priceScale(data.value));
+        
+        this.graphLine = this.svgFrame.append("path")
+            .attr("fill", "none")
+            .attr("stroke", "goldenrod")
+            .attr("stroke-width", 3)
+            .attr("d", historyLineGen(data.receiveCurrencyGraphData.slice(startIndex)));
+    }
+    /**
+     * Scales the graph to the desired width and height.
+     * @param {Number} expectedWidth Desired width of container.
+     * @param {Number} expectedHeight Desired height of container.
+     */
+    resize(expectedWidth, expectedHeight) {
+        let widthScaleFactor = expectedWidth / this.width;
+        let heightScaleFactor = expectedHeight / this.height;
+
+        this.svgFrame.attr("transform", `scale(${widthScaleFactor}, ${heightScaleFactor})`)
     }
 }
 // Fetches poe.ninja's currency overview data and populates POEN_API.CurrencyOverview
@@ -91,17 +173,18 @@ function populateCurrencyDisplay() {
 
         // Must generate figcaption here
         fetchCurrencyHistory(LEAGUE_NAME, POEN_API.CurrencyIdMap[currencyName].id)
-            .then( (data) => {
+            .then((data) => {
                 let icon = getChildByTag(element, "IMG");
                 let rollingMean = POEN_API.GetRollingAverage(14, data);
                 let numform = new Intl.NumberFormat("en-IN", {maximumFractionDigits: 3});
                 let caption = document.createElement("figcaption");
+                let graph = new Histograph(data, figure);
 
                 icon.setAttribute("src", POEN_API.CurrencyIdMap[currencyName].img);
                 caption.textContent = `14-day average: ${numform.format(rollingMean)}`;
                 figure.append(caption);
-                figure.append(generatePriceHistoryGraph(data, figure).node());
-
+                figure.append(graph.svgFrame.node());
+                POEN_API.GeneratedGraphs.push(graph);
             });
         
         index--;
@@ -111,57 +194,6 @@ function populateCurrencyDisplay() {
 // Helper function to cleanly convert number of days into ms for use with Date.now()
 function daysToMs(days) {
     return days * 24 * 60 * 60 * 1000;
-}
-
-// Generates a d3 svg element for the given price history data
-function generatePriceHistoryGraph(data, container) {
-
-    let height = container.offsetHeight;
-    let width = container.offsetWidth;
-
-    let svg = d3.create("svg")
-        .attr("width", width)
-        .attr("height", height);
-    const wMargin = 40;
-    const hMargin = 30;
-    const dayThreshold = 14;
-
-    // Set domain
-    let valueMax = 0;
-    let startIndex = data.receiveCurrencyGraphData.length - dayThreshold - 1;
-    for (let a = startIndex; a < data.receiveCurrencyGraphData.length; a++) {
-        let day = data.receiveCurrencyGraphData[a];
-        if (day.value > valueMax) valueMax = day.value;
-    }
-
-    let dateScale = d3.scaleLinear([dayThreshold, 0],[wMargin, width - wMargin]);
-    let priceScale = d3.scaleLinear([0, valueMax * 1.05], [height - hMargin, hMargin]);
-    let priceFormatter = d3.format("3.2f");
-
-    let xAxis = svg.append("g")
-        .attr("class", "graph-x-axis")
-        .attr("transform", `translate(0, ${height - hMargin})`)
-        .call(d3.axisBottom(dateScale).ticks(dayThreshold));
-    
-    let yAxis = svg.append("g")
-        .attr("class", "graph-y-axis")
-        .attr("transform", `translate(${wMargin}, 0)`)
-        .call(d3.axisLeft(priceScale).ticks(3))
-        .selectAll("text")
-        .data(priceScale.ticks())
-        .text(priceFormatter);
-
-    let historyLineGen = d3.line()
-        .x(data => dateScale(data.daysAgo))
-        .y(data => priceScale(data.value));
-
-    svg.append("path")
-        .attr("fill", "none")
-        .attr("stroke", "goldenrod")
-        .attr("stroke-width", 3)
-        .attr("d", historyLineGen(data.receiveCurrencyGraphData.slice(startIndex)));
-
-    return svg;
 }
 
 // Helper function to return the first child with a given tag name
@@ -175,3 +207,11 @@ function getChildByTag(node, tag) {
 fetchCurrencyOverivew(LEAGUE_NAME).then( data => {
     populateCurrencyDisplay();
 });
+
+window.addEventListener("resize", (event) => {
+    for (let graph of POEN_API.GeneratedGraphs) {
+        let rHeight = graph.parent.offsetHeight;
+        let rWidth = graph.parent.offsetWidth;
+        graph.resize(rWidth, rHeight);
+    }
+})

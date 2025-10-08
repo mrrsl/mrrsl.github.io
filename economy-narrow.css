@@ -4,23 +4,42 @@
         grid-template-columns: 100%;
         grid-template-rows: auto auto auto auto auto;
     }
+
+    header {
+        display: grid;
+        grid-template-columns: 100%;
+        grid-template-rows: auto auto;
+        height:fit-content;
+    }
+    div#nav-group {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        grid-row: 2 / span 1;
+    }
+    div.nav-button{
+        padding: 3px;
+    }
+    div#org-logo-group{
+        grid-row: 1 /span 1;
+        text-align: right;
+    }
     div#icon-group{
         padding: 5px;
+        width: fit-content;
     }
     div#icon-group > img {
         width: 40px;
-    }
-    div.nav-button {
-        display: none;
     }
 
     div.showcase {
         grid-row: 2 / span 1;
         grid-column: 1 / span 1;
-        height: 70vh;
+        height: 400px;
     }
     span#showcase-text {
-        font-size: 24px;
+        font-size: 36px;
     }
 
     div.device-bar {
@@ -38,24 +57,21 @@
     div#content-group {
         grid-row: 4 / span 1;
         grid-column: 1 / span 1;
-    }
-    article {
         display: grid;
-        grid-template-rows: auto auto 60vh;
+        grid-template-rows: auto auto;
         grid-template-columns: 100%;
     }
-    h4.currency-title {
+    div#content-header {
         grid-row: 1 / span 1;
         grid-column: 1 / span 1;
-        font-size: 24px;
     }
-    div.changebox {
-        grid-row: 2 / span 1;
-        grid-column: 1 / span 1;
+    h4.currency-title {
+        font-size: 24px;
     }
     div.changebox > p {
-        text-align: center;
         font-size: 24px;
-        margin: 0px;
+    }
+    article > img {
+        width: 15vw;
     }
 }
