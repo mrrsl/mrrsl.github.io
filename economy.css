@@ -274,3 +274,7 @@ aside > button {
     border-style: none;
     margin-top: 20px;
 }
+
+small {
+    color:#bbbbcc
+}
